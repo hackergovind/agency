@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observe — See the shape of the noise</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Iconify Icons -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --bg: #000000;
+      --fg: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #000000;
+    }
+
+    .font-serif-instrument {
+      font-family: 'Instrument Serif', serif;
+    }
+
+    /* LIQUID GLASS SYSTEM SPECIFICATION */
+    .liquid-glass {
+      background: rgba(0, 0, 0, 0.22);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass-circle {
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass-circle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.22) 30%,
+        rgba(255, 255, 255, 0.16) 50%,
+        rgba(255, 255, 255, 0.22) 70%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Sub-glass element for inputs & inner pills */
+    .liquid-glass-sub {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    }
+    .liquid-glass-sub:focus {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Text shadows for crystal readability over continuous video */
+    .hero-title-shadow {
+      text-shadow: 0 0 72px rgba(0, 0, 0, 0.42), 0 4px 28px rgba(0, 0, 0, 0.28);
+    }
+    .hero-sub-shadow {
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.32), 0 1px 10px rgba(0, 0, 0, 0.20);
+    }
+    .section-title-shadow {
+      text-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 0 2px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2a2a;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #444444;
+    }
+  </style>
+</head>
+<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen relative antialiased">
+
+  <!-- ==================== FIXED BACKGROUND VIDEO (SEAMLESS FOR WHOLE WEBSITE) ==================== -->
+  <!-- Plays at full opacity, native loop, 0.5x speed behind every section -->
+  <video id="hero-video" class="fixed inset-0 w-full h-full object-cover object-bottom pointer-events-none z-0"
+         muted autoplay loop playsinline preload="auto"></video>
+
+  <!-- ==================== WHOLE SITE CONTENT CONTAINER ==================== -->
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- ==================== HERO SCREEN (100VH FULL VIEWPORT) ==================== -->
+    <section class="min-h-screen relative flex flex-col justify-between">
+      
+      <!-- NAVBAR -->
+      <nav class="relative z-20 px-6 py-6">
+        <div class="liquid-glass rounded-full max-w-5xl mx-auto pl-6 pr-1.5 py-1.5 flex items-center justify-between">
+          
+          <!-- Left group -->
+          <div class="flex items-center gap-2">
+            <!-- Signature Logo -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6">
+              <path d="M4.21 16.5 A9 9 0 0 1 16.5 4.21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16.5 4.21 A9 9 0 0 1 19.79 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.4 2.3"/>
+              <path d="M19.79 16.5 A9 9 0 0 1 4.21 16.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.01 4.7"/>
+              <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+            </svg>
+            <span class="font-semibold text-lg tracking-tight">Observe</span>
+            
+            <div class="hidden md:flex gap-8 ml-8">
+              <a href="#services" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Services</a>
+              <a href="#solutions" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Architecture</a>
+              <a href="#estimator" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Estimator</a>
+              <a href="#contact" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Contact us</a>
+            </div>
+          </div>
+
+          <!-- Right group -->
+          <div class="flex items-center gap-4">
+            <a href="#contact" class="text-white text-sm font-medium">Sign Up</a>
+            <button onclick="openConsultationModal()" class="bg-white rounded-full px-5 py-2 text-black text-sm font-medium whitespace-nowrap hover:scale-105 transition-transform duration-300">
+              Join Waitlist
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- HERO CENTERED CONTENT (-translate-y-[20%]) -->
+      <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
+        
+        <!-- Headline -->
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-serif-instrument tracking-tight whitespace-nowrap mb-4 hero-title-shadow">
+          Engineering AI, websites & <em class="italic">apps</em>
+        </h1>
+
+        <!-- Subline -->
+        <p class="text-white/70 text-sm leading-relaxed max-w-2xl md:whitespace-nowrap mb-10 hero-sub-shadow">
+          Bespoke AI automation systems, modern web platforms, and mobile apps — built to scale.
+        </p>
+
+        <!-- Email Capture Pill -->
+        <div class="max-w-xl w-full">
+          <form onsubmit="handleWaitlist(event)" class="liquid-glass rounded-full pl-6 pr-1.5 py-1.5 flex items-center gap-3">
+            <input type="email" id="quick-email" required placeholder="Enter your email"
+                   class="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/90 text-sm">
+            <button type="submit" class="bg-white rounded-full px-6 py-3 text-black text-sm font-medium whitespace-nowrap hover:scale-105 transition-transform duration-300">
+              Join Waitlist
+            </button>
+          </form>
+          <p id="waitlist-msg" class="text-xs text-white/90 mt-3 font-medium hidden hero-sub-shadow">
+            Inquiry received. Our engineering team will contact you shortly.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM ROW OF LIQUID GLASS CIRCLES -->
+      <div class="relative z-10 flex justify-center gap-4 pb-12">
+        <a href="#services" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" aria-label="Explore Services">
+          <iconify-icon icon="lucide:bot" class="text-xl"></iconify-icon>
+        </a>
+        <a href="#solutions" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" aria-label="Explore Architecture">
+          <iconify-icon icon="lucide:globe" class="text-xl"></iconify-icon>
+        </a>
+        <a href="#contact" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" aria-label="Contact Studio">
+          <iconify-icon icon="lucide:arrow-down" class="text-xl"></iconify-icon>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ==================== SERVICES SECTION (LIQUID GLASS THEMED) ==================== -->
+    <section id="services" class="relative z-10 py-28 px-6 max-w-6xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
+          Core Pillars
+        </div>
+        <h2 class="text-4xl sm:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+          Autonomous systems. High-performance software.
+        </h2>
+        <p class="text-white/70 text-sm hero-sub-shadow">
+          Three specialized capabilities delivered by senior AI researchers and full-stack software engineers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- CARD 1: AI Automation -->
+        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+          <div>
+            <div class="liquid-glass-circle w-14 h-14 rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+              <iconify-icon icon="lucide:bot"></iconify-icon>
+            </div>
+            <span class="text-xs font-mono text-white/50 uppercase tracking-widest block mb-1">01 / AUTOMATION</span>
+            <h3 class="text-2xl font-serif-instrument text-white mb-3">AI Automation Systems</h3>
+            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+              Autonomous multi-agent orchestration, CRM auto-sync, voice AI receptionists, and intelligent document extraction pipelines.
+            </p>
+            <ul class="space-y-2.5 text-xs text-white/80 border-t border-white/10 pt-4 mb-8">
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> LangGraph & CrewAI Autonomous Workflows</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> 24/7 Voice AI & Conversational Agents</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Automated Lead Triage & Calendar Booking</li>
+            </ul>
+          </div>
+          <button onclick="selectServiceForModal('AI Automation')" class="liquid-glass-sub w-full py-3.5 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
+            Commission AI Automation <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+          </button>
+        </div>
+
+        <!-- CARD 2: Web Development -->
+        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+          <div>
+            <div class="liquid-glass-circle w-14 h-14 rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+              <iconify-icon icon="lucide:layout"></iconify-icon>
+            </div>
+            <span class="text-xs font-mono text-white/50 uppercase tracking-widest block mb-1">02 / WEB PLATFORMS</span>
+            <h3 class="text-2xl font-serif-instrument text-white mb-3">Bespoke Web Development</h3>
+            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+              Ultra-fast, cinema-grade modern websites built with Next.js, fluid typography, dark liquid glass UI, and 100/100 Core Web Vitals.
+            </p>
+            <ul class="space-y-2.5 text-xs text-white/80 border-t border-white/10 pt-4 mb-8">
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Next.js 15, React 19 & TypeScript Engine</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Sub-second Edge Caching & Global CDN</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Headless CMS & High-Conversion UX</li>
+            </ul>
+          </div>
+          <button onclick="selectServiceForModal('Website Development')" class="liquid-glass-sub w-full py-3.5 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
+            Build Modern Website <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+          </button>
+        </div>
+
+        <!-- CARD 3: Mobile Apps -->
+        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+          <div>
+            <div class="liquid-glass-circle w-14 h-14 rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+              <iconify-icon icon="lucide:smartphone"></iconify-icon>
+            </div>
+            <span class="text-xs font-mono text-white/50 uppercase tracking-widest block mb-1">03 / MOBILE APPS</span>
+            <h3 class="text-2xl font-serif-instrument text-white mb-3">Native & Hybrid Mobile Apps</h3>
+            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+              End-to-end iOS and Android applications with real-time cloud synchronization, push notifications, and guaranteed App Store approval.
+            </p>
+            <ul class="space-y-2.5 text-xs text-white/80 border-t border-white/10 pt-4 mb-8">
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Flutter, React Native, Swift & Kotlin</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Offline-first Sync & Biometric Auth</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> In-App Purchases & On-Device AI</li>
+            </ul>
+          </div>
+          <button onclick="selectServiceForModal('Mobile App Development')" class="liquid-glass-sub w-full py-3.5 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
+            Launch Mobile App <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ARCHITECTURE & STACK EXPLORER (LIQUID GLASS) ==================== -->
+    <section id="solutions" class="relative z-10 py-20 px-6 max-w-5xl mx-auto w-full">
+      <div class="liquid-glass rounded-3xl p-8 md:p-12">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-white/10 gap-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-white/50 block">Architecture</span>
+            <h2 class="text-3xl sm:text-5xl font-serif-instrument text-white mt-1 section-title-shadow">Technical Stack</h2>
+          </div>
+          <!-- Interactive Pills -->
+          <div class="flex items-center gap-2 p-1.5 liquid-glass rounded-full self-start md:self-auto">
+            <button onclick="switchTab('ai')" id="tab-ai" class="px-4 py-2 rounded-full text-xs font-medium bg-white text-black transition">AI Automations</button>
+            <button onclick="switchTab('web')" id="tab-web" class="px-4 py-2 rounded-full text-xs font-medium text-white/70 hover:text-white transition">Web Platforms</button>
+            <button onclick="switchTab('app')" id="tab-app" class="px-4 py-2 rounded-full text-xs font-medium text-white/70 hover:text-white transition">Mobile Apps</button>
+          </div>
+        </div>
+
+        <!-- TAB 1: AI -->
+        <div id="panel-ai" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h4 class="text-2xl font-serif-instrument text-white mb-3">Deterministic Agent Architectures</h4>
+            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+              We design autonomous agent networks that interface directly with your databases, messaging systems, and webhooks with guaranteed zero-hallucination execution.
+            </p>
+            <div class="text-xs text-white/60 font-mono">Turnaround: 10–14 Days • Production Ready</div>
+          </div>
+          <div class="liquid-glass rounded-2xl p-6 font-mono text-xs text-white/80 space-y-3">
+            <div class="text-white/40">// SPECIFICATION: AI AUTOMATION</div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">LangGraph & CrewAI</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Python 3.12 / FastAPI</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Claude 3.5 & GPT-4o</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Pinecone Vector DB</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">n8n / Supabase</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: WEB -->
+        <div id="panel-web" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center hidden">
+          <div>
+            <h4 class="text-2xl font-serif-instrument text-white mb-3">Modern Glassmorphic Web Engineering</h4>
+            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+              Engineered with Next.js 15 App Router, React 19, TypeScript, and edge runtime for instant worldwide delivery and fluid interactive UX.
+            </p>
+            <div class="text-xs text-white/60 font-mono">Performance: 100/100 Core Web Vitals Guaranteed</div>
+          </div>
+          <div class="liquid-glass rounded-2xl p-6 font-mono text-xs text-white/80 space-y-3">
+            <div class="text-white/40">// SPECIFICATION: WEB PLATFORMS</div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Next.js 15 App Router</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">React 19 & TypeScript</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Tailwind CSS</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Three.js / WebGL</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Vercel Edge Network</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: APP -->
+        <div id="panel-app" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center hidden">
+          <div>
+            <h4 class="text-2xl font-serif-instrument text-white mb-3">Turnkey Mobile Applications</h4>
+            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+              Single-codebase cross-platform deployment across iOS and Android with local SQLite/Supabase synchronization, biometrics, and push notifications.
+            </p>
+            <div class="text-xs text-white/60 font-mono">Guaranteed App Store & Google Play Approval</div>
+          </div>
+          <div class="liquid-glass rounded-2xl p-6 font-mono text-xs text-white/80 space-y-3">
+            <div class="text-white/40">// SPECIFICATION: MOBILE APPS</div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">React Native & Expo</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Flutter / Dart</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Swift & Kotlin</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">Supabase / Firebase</span>
+              <span class="px-3 py-1 rounded-full liquid-glass-sub text-white">RevenueCat</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ESTIMATOR (LIQUID GLASS) ==================== -->
+    <section id="estimator" class="relative z-10 py-20 px-6 max-w-4xl mx-auto w-full">
+      <div class="liquid-glass rounded-3xl p-8 md:p-12 text-center">
+        <span class="text-xs font-mono uppercase tracking-widest text-white/50 block mb-2">Instant Pricing Tool</span>
+        <h2 class="text-4xl font-serif-instrument text-white mb-3 section-title-shadow">Project Cost Estimator</h2>
+        <p class="text-white/70 text-sm max-w-md mx-auto mb-8 hero-sub-shadow">Select your target deliverables to calculate live investment and delivery estimates.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left mb-8">
+          <label class="liquid-glass-sub p-4 rounded-2xl flex items-start gap-3 cursor-pointer hover:bg-white/10 transition">
+            <input type="checkbox" id="est-ai" onchange="calc()" checked class="mt-1 accent-white">
+            <div>
+              <div class="text-sm font-semibold text-white">AI Automation</div>
+              <div class="text-xs text-white/60">Autonomous agents & CRM sync</div>
+            </div>
+          </label>
+          <label class="liquid-glass-sub p-4 rounded-2xl flex items-start gap-3 cursor-pointer hover:bg-white/10 transition">
+            <input type="checkbox" id="est-web" onchange="calc()" checked class="mt-1 accent-white">
+            <div>
+              <div class="text-sm font-semibold text-white">Custom Website</div>
+              <div class="text-xs text-white/60">Next.js responsive web platform</div>
+            </div>
+          </label>
+          <label class="liquid-glass-sub p-4 rounded-2xl flex items-start gap-3 cursor-pointer hover:bg-white/10 transition">
+            <input type="checkbox" id="est-app" onchange="calc()" class="mt-1 accent-white">
+            <div>
+              <div class="text-sm font-semibold text-white">Mobile Application</div>
+              <div class="text-xs text-white/60">iOS & Android store ready</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="liquid-glass rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-left">
+            <div class="text-xs text-white/50 font-mono">ESTIMATED INVESTMENT</div>
+            <div id="est-val" class="text-3xl font-serif-instrument text-white font-bold section-title-shadow">$4,500 – $6,200</div>
+          </div>
+          <button onclick="openConsultationModal()" class="bg-white text-black font-semibold px-6 py-3 rounded-full text-xs hover:scale-105 active:scale-95 transition whitespace-nowrap shadow-md">
+            Lock In Estimate <iconify-icon icon="lucide:arrow-right" class="inline ml-1"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT FORM (LIQUID GLASS) ==================== -->
+    <section id="contact" class="relative z-10 py-24 px-6 max-w-xl mx-auto w-full text-center">
+      <div class="liquid-glass rounded-3xl p-8 md:p-12 text-left">
+        <h2 class="text-3xl sm:text-5xl font-serif-instrument text-white mb-2 text-center section-title-shadow">Initiate Project</h2>
+        <p class="text-white/70 text-xs text-center mb-8 hero-sub-shadow">Submit your brief directly to our principal engineer for a same-day architecture roadmap.</p>
+        
+        <form onsubmit="handleContact(event)" class="space-y-4">
+          <div>
+            <label class="text-xs text-white/60 block mb-1">Your Name</label>
+            <input type="text" required placeholder="Alex Vance" class="w-full liquid-glass-sub rounded-xl px-4 py-3 text-sm text-white outline-none">
+          </div>
+          <div>
+            <label class="text-xs text-white/60 block mb-1">Email</label>
+            <input type="email" required placeholder="alex@company.com" class="w-full liquid-glass-sub rounded-xl px-4 py-3 text-sm text-white outline-none">
+          </div>
+          <div>
+            <label class="text-xs text-white/60 block mb-1">Primary Deliverable</label>
+            <select class="w-full liquid-glass-sub rounded-xl px-4 py-3 text-sm text-white outline-none bg-black/90">
+              <option value="AI Automation" class="bg-black text-white">AI Automation & Autonomous Agents</option>
+              <option value="Website Development" class="bg-black text-white">Bespoke Website Development</option>
+              <option value="Mobile App Development" class="bg-black text-white">Mobile App Development (iOS/Android)</option>
+              <option value="Full Software Suite" class="bg-black text-white">Full Stack Package (All Three)</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-white/60 block mb-1">Project Brief</label>
+            <textarea rows="3" required placeholder="Outline what you wish to automate or engineer..." class="w-full liquid-glass-sub rounded-xl px-4 py-3 text-sm text-white outline-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-white text-black font-semibold py-3.5 rounded-full text-xs hover:scale-[1.01] transition shadow-lg">
+            Submit Project Brief
+          </button>
+        </form>
+        <p id="contact-success" class="text-xs text-emerald-400 mt-4 text-center hidden">
+          Brief received! Our lead engineer will reply within 4 hours.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER (LIQUID GLASS PILL) ==================== -->
+    <footer class="relative z-10 py-12 px-6">
+      <div class="liquid-glass rounded-full max-w-5xl mx-auto px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <div class="flex items-center gap-3">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 text-white">
+            <path d="M4.21 16.5 A9 9 0 0 1 16.5 4.21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16.5 4.21 A9 9 0 0 1 19.79 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.4 2.3"/>
+            <path d="M19.79 16.5 A9 9 0 0 1 4.21 16.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.01 4.7"/>
+            <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+          </svg>
+          <span class="text-sm font-semibold tracking-tight">Observe</span>
+          <span class="text-xs text-white/40 ml-2">© 2026 Observe Systems Inc.</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="https://github.com" target="_blank" class="liquid-glass-circle w-10 h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/10 transition" aria-label="GitHub">
+            <iconify-icon icon="lucide:github" class="text-base"></iconify-icon>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="liquid-glass-circle w-10 h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/10 transition" aria-label="Twitter">
+            <iconify-icon icon="lucide:twitter" class="text-base"></iconify-icon>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="liquid-glass-circle w-10 h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/10 transition" aria-label="LinkedIn">
+            <iconify-icon icon="lucide:linkedin" class="text-base"></iconify-icon>
+          </a>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==================== MODAL (LIQUID GLASS) ==================== -->
+  <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md hidden">
+    <div class="liquid-glass rounded-3xl max-w-md w-full p-8 relative border border-white/20">
+      <button onclick="closeConsultationModal()" class="absolute top-5 right-5 text-white/60 hover:text-white text-xl">
+        <iconify-icon icon="lucide:x"></iconify-icon>
+      </button>
+      <h3 class="text-3xl font-serif-instrument text-white mb-2 section-title-shadow">Book Discovery Call</h3>
+      <p class="text-xs text-white/70 mb-6 hero-sub-shadow">Schedule a 20-minute architecture review with our principal developer.</p>
+
+      <form onsubmit="handleModalSubmit(event)" class="space-y-4 text-left">
+        <div>
+          <label class="text-xs text-white/60 block mb-1">Your Name</label>
+          <input type="text" required placeholder="Alex Vance" class="w-full liquid-glass-sub rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+        </div>
+        <div>
+          <label class="text-xs text-white/60 block mb-1">Email</label>
+          <input type="email" required placeholder="alex@company.com" class="w-full liquid-glass-sub rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+        </div>
+        <div>
+          <label class="text-xs text-white/60 block mb-1">Selected Primary Service</label>
+          <input type="text" id="modal-service" value="AI Automation & Custom Dev" readonly class="w-full liquid-glass-sub rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+        </div>
+        <button type="submit" class="w-full bg-white text-black font-semibold py-3 rounded-full text-xs hover:scale-[1.01] transition shadow-lg">
+          Confirm Calendar Slot
+        </button>
+      </form>
+      <div id="modal-success" class="hidden text-xs text-emerald-400 mt-4 text-center font-medium">
+        Calendar invitation dispatched! Check your inbox.
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    // Fixed video playback setup
+    const video = document.getElementById('hero-video');
+    video.src = "https://designerstephen.github.io/public-assets/videos/observe-hero.mp4";
+    video.playbackRate = 0.5;
+
+    // Architecture Tab switcher
+    function switchTab(type) {
+      ['ai', 'web', 'app'].forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        const p = document.getElementById(`panel-${t}`);
+        if (t === type) {
+          btn.className = "px-4 py-2 rounded-full text-xs font-medium bg-white text-black transition";
+          p.classList.remove('hidden');
+        } else {
+          btn.className = "px-4 py-2 rounded-full text-xs font-medium text-white/70 hover:text-white transition";
+          p.classList.add('hidden');
+        }
+      });
+    }
+
+    // Cost Estimator calculation
+    function calc() {
+      let min = 0, max = 0;
+      if (document.getElementById('est-ai').checked) { min += 2000; max += 3200; }
+      if (document.getElementById('est-web').checked) { min += 2500; max += 3000; }
+      if (document.getElementById('est-app').checked) { min += 4000; max += 6000; }
+      if (min === 0) {
+        document.getElementById('est-val').innerText = "$0";
+      } else {
+        document.getElementById('est-val').innerText = `$${min.toLocaleString()} – $${max.toLocaleString()}`;
+      }
+    }
+
+    // Modal helpers
+    function openConsultationModal() { document.getElementById('modal').classList.remove('hidden'); }
+    function closeConsultationModal() { document.getElementById('modal').classList.add('hidden'); }
+    function selectServiceForModal(svc) {
+      document.getElementById('modal-service').value = svc;
+      openConsultationModal();
+    }
+    function handleWaitlist(e) {
+      e.preventDefault();
+      document.getElementById('waitlist-msg').classList.remove('hidden');
+      setTimeout(() => { document.getElementById('quick-email').value = ''; }, 2000);
+    }
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('contact-success').classList.remove('hidden');
+      e.target.reset();
+    }
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      document.getElementById('modal-success').classList.remove('hidden');
+      setTimeout(() => {
+        closeConsultationModal();
+        document.getElementById('modal-success').classList.add('hidden');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
