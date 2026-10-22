@@ -1,48 +1,44 @@
-# Observe Studio — AI Automation, Web & App Development
+# Observe Studio — Premium AI Automation, Web & App Development
 
-Observe Studio is an elite digital engineering agency website built with dark-mode glassmorphic aesthetics powered by the **Liquid Glass** design system.
+Observe Studio is a cinema-grade agency platform designed with the signature **HMC Studios** aesthetic — deep obsidian black palette (`#0a0a0a`), crimson red gradient accents (`#7F0000` to `#A60000`), geometric display typography (**Outfit**), and ultra-clean body copy (**Inter**).
 
 Founded and engineered by **Govind Singh** ([@hackergovind](https://github.com/hackergovind)).
 
 ---
 
-## 🌟 Architecture & Features
+## 🌟 HMC Studios Inspired Design System
 
-1. **Continuous Atmospheric Video Backdrop:**
-   - 0.5x playback speed abstract slow-motion loop seamlessly running behind the entire site.
-2. **Liquid Glass System:**
-   - Luminosity blend mode, 14px backdrop blur, inner highlight shadows, and multi-stop linear gradient borders with exclusion masks.
-3. **Hero Conversion Engine & Trust Strip:**
-   - Full-viewport 100vh screen with value proposition, work email quick-intake pill, and live availability badge.
-   - **Horizontal Partner/Client Logo Ticker:** Infinite marquee loop with gradient alpha edge mask and hover-pause, showcasing ecosystem integrations (OpenAI, Anthropic, Vercel, Next.js, Supabase, Flutter, Stripe, PostgreSQL, Python, Apple).
-4. **Three Core Engineering Pillars:**
-   - **AI Automation & Multi-Agent Workflows** (LangGraph, CrewAI, Python, FastAPI, Claude 3.5)
-   - **Bespoke Web Development** (Next.js 15, React 19, TypeScript, WebGL, 100/100 Core Web Vitals)
-   - **Full-Stack Mobile Applications** (Flutter, React Native, Swift, Supabase, In-App Purchases)
-5. **Interactive Portfolio & Architecture Teardowns:**
-   - 3 flagship case studies with interactive modals showing technical challenges, system architectures, and verified outcomes:
-     - *Nexus Logistics AI* (Autonomous Multi-Agent Invoice Engine — 92% workload reduction)
-     - *Aura SaaS Platform* (Next.js 15 Web Platform — 3.4x conversion jump)
-     - *Pulse Health Mobile* (Biometric AI Coaching App — 120k+ downloads)
-6. **Infinite Marquee Client Testimonials with Alpha Mask:**
-   - Dual-row slow infinite horizontal loop with linear-gradient edge fading (alpha mask).
-   - Pause-on-hover interaction.
-   - 8 verified client reviews from international tech executives (San Francisco, Paris, Stockholm, Milan, London, Amsterdam, Copenhagen, Sydney) rating Observe Studio 5.0/5.0.
-7. **Productized Pricing Tiers & Spec-Match Guarantee:**
-   - **AI Automation Sprint:** $2,400 (10 Days)
-   - **Next-Gen Web Platform:** $3,800 (14 Days)
-   - **Turnkey Mobile App MVP:** $6,500 (4 Weeks)
-   - **Spec-Match Guarantee:** Zero-cost revisions if the prototype diverges from the agreed engineering specification.
-7. **4-Step Engineering Delivery Roadmap:**
-   - *Days 1–3:* Blueprint & Architecture Audit
-   - *Days 4–8:* Staging Prototype
-   - *Days 9–14:* Production Hardening & QA
-   - *Day 15+:* Launch & 100% IP Handover
-8. **2-Step Direct Calendar Booking Engine:**
-   - Step 1: Pre-qualification intake (Name, Email, Service).
-   - Step 2: Live interactive slot selector with Cal.com / Calendly synchronization.
-9. **Floating Interactive AI Scoping Agent:**
-   - Real-time conversational AI widget in bottom-right corner with instant prompt chips (*"Estimate ROI"*, *"Tech Stack"*, *"Book Call"*) and direct handoff to the calendar scheduler.
+1. **Typography & Styling:**
+   - **Display Headings:** `Outfit` (Ultra-bold, geometric, all-caps display lettering).
+   - **Body Copy:** `Inter` (Crisp, modern, readable body typography).
+   - **Monospace Labels:** `Space Grotesk` with horizontal gradient accent lines (`span.label-line`).
+2. **Color Palette:**
+   - Primary Background: `#0a0a0a`
+   - Secondary Background: `#111111`
+   - Cards & Containers: `rgba(16, 16, 18, 0.85)` with crimson border glow on hover
+   - Accent: Crimson Red (`#7F0000`, `#A60000`, `#ff3b3b`)
+3. **Hero Section:**
+   - Fullscreen cinematic layout with subtle dark video overlay.
+   - Mega all-caps title: `ENGINEERED` `FOR THE` `FUTURE.` with red text-gradient.
+   - Crimson gradient primary CTA (`btn-hmc-primary`) + Glass outline secondary CTA (`btn-hmc-secondary`).
+   - Animated scroll hint with downward bouncing arrow.
+4. **Signature Collaborations Section (`#clients`):**
+   - Header with red accent line and `ENTERPRISES WE'VE POWERED` heading.
+   - **Dual Marquee Ticker with Red Bullet Dots (`●`):**
+     - Track 1: Client & Enterprise brands moving left.
+     - Track 2: Core tech stack moving in reverse (right).
+     - Deep alpha edge mask fade (`mask-ticker-edges`).
+   - **Integrated Testimonials Grid:**
+     - Giant red quote mark `“`.
+     - High-impact verified client quotes from international founders.
+     - Dark cards with subtle red hover glow.
+5. **Core Services, Work & Pricing:**
+   - 01/02/03 service cards with red accent badges.
+   - Case studies with architecture teardown modal.
+   - Productized sprint pricing ($2,400 / $3,800 / $6,500) with Spec-Match guarantee.
+6. **2-Step Qualified Booking & Contact:**
+   - Direct lead qualification and slot reservation.
+   - Contact layout featuring Govind Singh, email, GitHub, and Bangalore location.
 
 ---
 
