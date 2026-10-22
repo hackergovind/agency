@@ -12,8 +12,9 @@ Founded and engineered by **Govind Singh** ([@hackergovind](https://github.com/h
    - 0.5x playback speed abstract slow-motion loop seamlessly running behind the entire site.
 2. **Liquid Glass System:**
    - Luminosity blend mode, 14px backdrop blur, inner highlight shadows, and multi-stop linear gradient borders with exclusion masks.
-3. **Hero Conversion Engine:**
+3. **Hero Conversion Engine & Trust Strip:**
    - Full-viewport 100vh screen with value proposition, work email quick-intake pill, and live availability badge.
+   - **Horizontal Partner/Client Logo Ticker:** Infinite marquee loop with gradient alpha edge mask and hover-pause, showcasing ecosystem integrations (OpenAI, Anthropic, Vercel, Next.js, Supabase, Flutter, Stripe, PostgreSQL, Python, Apple).
 4. **Three Core Engineering Pillars:**
    - **AI Automation & Multi-Agent Workflows** (LangGraph, CrewAI, Python, FastAPI, Claude 3.5)
    - **Bespoke Web Development** (Next.js 15, React 19, TypeScript, WebGL, 100/100 Core Web Vitals)
