@@ -23,7 +23,11 @@ Founded and engineered by **Govind Singh** ([@hackergovind](https://github.com/h
      - *Nexus Logistics AI* (Autonomous Multi-Agent Invoice Engine — 92% workload reduction)
      - *Aura SaaS Platform* (Next.js 15 Web Platform — 3.4x conversion jump)
      - *Pulse Health Mobile* (Biometric AI Coaching App — 120k+ downloads)
-6. **Productized Pricing Tiers & Spec-Match Guarantee:**
+6. **Infinite Marquee Client Testimonials with Alpha Mask:**
+   - Dual-row slow infinite horizontal loop with linear-gradient edge fading (alpha mask).
+   - Pause-on-hover interaction.
+   - 8 verified client reviews from international tech executives (San Francisco, Paris, Stockholm, Milan, London, Amsterdam, Copenhagen, Sydney) rating Observe Studio 5.0/5.0.
+7. **Productized Pricing Tiers & Spec-Match Guarantee:**
    - **AI Automation Sprint:** $2,400 (10 Days)
    - **Next-Gen Web Platform:** $3,800 (14 Days)
    - **Turnkey Mobile App MVP:** $6,500 (4 Weeks)

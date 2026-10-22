@@ -117,6 +117,41 @@
       text-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 0 2px 14px rgba(0, 0, 0, 0.4);
     }
 
+    /* Infinite Marquee Animation & Alpha Mask */
+    @keyframes marquee-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes marquee-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .animate-marquee-slow {
+      display: flex;
+      width: max-content;
+      animation: marquee-left 60s linear infinite;
+      will-change: transform;
+    }
+
+    .animate-marquee-slow-reverse {
+      display: flex;
+      width: max-content;
+      animation: marquee-right 60s linear infinite;
+      will-change: transform;
+    }
+
+    .animate-marquee-slow:hover,
+    .animate-marquee-slow-reverse:hover {
+      animation-play-state: paused;
+    }
+
+    .mask-alpha-edges {
+      -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -163,6 +198,7 @@
             <div class="hidden md:flex gap-6 lg:gap-8 ml-6 lg:ml-8">
               <a href="#services" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Services</a>
               <a href="#portfolio" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Work</a>
+              <a href="#testimonials" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Reviews</a>
               <a href="#pricing" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Pricing</a>
               <a href="#process" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Roadmap</a>
               <a href="#contact" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Contact</a>
@@ -188,6 +224,7 @@
           <div class="flex flex-col space-y-3 text-center text-sm font-medium">
             <a href="#services" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Services</a>
             <a href="#portfolio" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Portfolio</a>
+            <a href="#testimonials" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Client Reviews</a>
             <a href="#pricing" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Pricing Tiers</a>
             <a href="#process" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Roadmap</a>
             <a href="#contact" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Contact Lead Founder</a>
@@ -415,7 +452,485 @@
       </div>
     </section>
 
-    <!-- ==================== PRODUCTIZED PRICING TIERS & GUARANTEE ==================== -->
+    <!-- ==================== CLIENT TESTIMONIALS (INFINITE MARQUEE WITH ALPHA MASK) ==================== -->
+    <section id="testimonials" class="relative z-10 py-16 sm:py-24 w-full overflow-hidden">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 px-4 sm:px-6">
+        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
+          Client Feedback
+        </div>
+        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+          Trusted by founders & engineering leaders worldwide.
+        </h2>
+        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
+          Direct words from CTOs, product directors, and founders scaling with Observe Studio.
+        </p>
+      </div>
+
+      <!-- Marquee Wrapper with Alpha Edge Mask -->
+      <div class="mask-alpha-edges w-full overflow-hidden space-y-5 sm:space-y-6">
+        
+        <!-- ROW 1 (Scrolls Left) -->
+        <div class="animate-marquee-slow flex gap-5 sm:gap-6">
+          
+          <!-- Card 1 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">94% Automated</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "Observe automated our multi-channel lead qualification pipeline in just 9 days. What used to tie up 3 sales reps full-time now runs deterministically with zero manual errors. Game changer for our enterprise."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                AV
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Alexander Vance</div>
+                <div class="text-[11px] text-white/50 truncate">CTO, Kinetix AI • San Francisco</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">3.4x Conversion</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "The Next.js 15 redesign Govind and his studio built dropped our bounce rate from 52% to 18% in the first week. By far the most refined liquid glass design and fastest engineering turnaround we've experienced."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                SD
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Sophie Dubois</div>
+                <div class="text-[11px] text-white/50 truncate">VP of Product, Lumina Cloud • Paris</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">120k+ Downloads</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "They delivered our cross-platform Flutter mobile app directly to the iOS and Android App Store with zero rejected builds. Their biometrics sync and in-app purchase flow are completely bulletproof."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                HL
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Henrik Lindqvist</div>
+                <div class="text-[11px] text-white/50 truncate">Co-Founder, Valo Nordic Labs • Stockholm</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">$140k Saved</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "Govind Singh operates at a rare velocity. The AI document processing system handles 10,000+ logistics invoices monthly with 99.98% database fidelity. Their Spec-Match guarantee made hiring them an easy decision."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                CM
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Camilla Moretti</div>
+                <div class="text-[11px] text-white/50 truncate">Head of Ops, Nexo Global • Milan</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duplicate Set for Seamless Infinite Loop -->
+          <!-- Card 1 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">94% Automated</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "Observe automated our multi-channel lead qualification pipeline in just 9 days. What used to tie up 3 sales reps full-time now runs deterministically with zero manual errors. Game changer for our enterprise."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                AV
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Alexander Vance</div>
+                <div class="text-[11px] text-white/50 truncate">CTO, Kinetix AI • San Francisco</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">3.4x Conversion</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "The Next.js 15 redesign Govind and his studio built dropped our bounce rate from 52% to 18% in the first week. By far the most refined liquid glass design and fastest engineering turnaround we've experienced."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                SD
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Sophie Dubois</div>
+                <div class="text-[11px] text-white/50 truncate">VP of Product, Lumina Cloud • Paris</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">120k+ Downloads</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "They delivered our cross-platform Flutter mobile app directly to the iOS and Android App Store with zero rejected builds. Their biometrics sync and in-app purchase flow are completely bulletproof."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                HL
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Henrik Lindqvist</div>
+                <div class="text-[11px] text-white/50 truncate">Co-Founder, Valo Nordic Labs • Stockholm</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">$140k Saved</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "Govind Singh operates at a rare velocity. The AI document processing system handles 10,000+ logistics invoices monthly with 99.98% database fidelity. Their Spec-Match guarantee made hiring them an easy decision."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                CM
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Camilla Moretti</div>
+                <div class="text-[11px] text-white/50 truncate">Head of Ops, Nexo Global • Milan</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ROW 2 (Scrolls Right) -->
+        <div class="animate-marquee-slow-reverse flex gap-5 sm:gap-6">
+          
+          <!-- Card 5 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">10-Day Sprint</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "We replaced a clunky $8k/month agency retainer with Observe's productized sprint. Fast communication, direct GitHub commits, and code that our internal engineers praised during our technical audit."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                ET
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Elijah Thorne</div>
+                <div class="text-[11px] text-white/50 truncate">Managing Director, Apex Protocol • London</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">Zero Hallucinations</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "In the AI automation world, finding engineers who truly understand LangGraph, deterministic RAG, and schema normalization is rare. Observe delivered clean pipelines on the first deploy."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                FD
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Frederik van Dijk</div>
+                <div class="text-[11px] text-white/50 truncate">Chief Architect, Synthetix Corp • Amsterdam</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">100/100 Vitals</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "The cinematic dark-mode website they shipped became an instant talking point during our Series A roadshow. Investors specifically complimented the responsiveness and snappy page load times."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                AM
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Astrid Møller</div>
+                <div class="text-[11px] text-white/50 truncate">Growth Director, Horizon Ventures • Copenhagen</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">5.0 Rating</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "From the initial strategy call to App Store deployment, Observe moved with clockwork precision. The 30-day post-launch developer warranty gave our executive board total peace of mind."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                OS
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Oliver Sterling</div>
+                <div class="text-[11px] text-white/50 truncate">Founder & CEO, Novus Health • Sydney</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duplicate Set for Seamless Infinite Loop -->
+          <!-- Card 5 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">10-Day Sprint</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "We replaced a clunky $8k/month agency retainer with Observe's productized sprint. Fast communication, direct GitHub commits, and code that our internal engineers praised during our technical audit."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                ET
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Elijah Thorne</div>
+                <div class="text-[11px] text-white/50 truncate">Managing Director, Apex Protocol • London</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">Zero Hallucinations</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "In the AI automation world, finding engineers who truly understand LangGraph, deterministic RAG, and schema normalization is rare. Observe delivered clean pipelines on the first deploy."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                FD
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Frederik van Dijk</div>
+                <div class="text-[11px] text-white/50 truncate">Chief Architect, Synthetix Corp • Amsterdam</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">100/100 Vitals</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "The cinematic dark-mode website they shipped became an instant talking point during our Series A roadshow. Investors specifically complimented the responsiveness and snappy page load times."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                AM
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Astrid Møller</div>
+                <div class="text-[11px] text-white/50 truncate">Growth Director, Horizon Ventures • Copenhagen</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8 Dupl -->
+          <div class="liquid-glass rounded-3xl p-5 sm:p-6 w-[310px] sm:w-[380px] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-white/30 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-xs sm:text-sm"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-mono text-emerald-400 liquid-glass-sub px-2.5 py-0.5 rounded-full">5.0 Rating</span>
+              </div>
+              <p class="text-xs sm:text-sm text-white/85 leading-relaxed mb-6">
+                "From the initial strategy call to App Store deployment, Observe moved with clockwork precision. The 30-day post-launch developer warranty gave our executive board total peace of mind."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3.5 border-t border-white/10">
+              <div class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold text-white flex-shrink-0">
+                OS
+              </div>
+              <div class="truncate">
+                <div class="text-xs font-semibold text-white truncate">Oliver Sterling</div>
+                <div class="text-[11px] text-white/50 truncate">Founder & CEO, Novus Health • Sydney</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
     <section id="pricing" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
