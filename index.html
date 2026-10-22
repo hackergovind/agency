@@ -152,6 +152,12 @@
       mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
     }
 
+    /* Deep fade mask for trust ticker corners */
+    .mask-ticker-edges {
+      -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -286,7 +292,7 @@
     </section>
 
     <!-- ==================== PARTNER / ECOSYSTEM LOGO TICKER (INFINITE LOOP + ALPHA MASK) ==================== -->
-    <section class="relative z-10 py-7 sm:py-9 border-y border-white/10 w-full overflow-hidden bg-black/40 backdrop-blur-md">
+    <section class="relative z-10 py-7 sm:py-9 border-y border-white/10 w-full overflow-hidden bg-black/40 backdrop-blur-md mask-ticker-edges">
       <div class="max-w-5xl mx-auto px-4 mb-4 sm:mb-5 text-center">
         <p class="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-white/45">
           Powering Production AI & Modern Software For High-Growth Teams
@@ -423,20 +429,20 @@
     </section>
 
     <!-- ==================== THREE CORE ENGINEERING PILLARS ==================== -->
-    <section id="services" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
+    <section id="services" class="relative z-10 py-20 sm:py-28 px-4 sm:px-8 lg:px-12 w-full max-w-[95vw] 2xl:max-w-[1750px] mx-auto">
+      <div class="text-center max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto mb-14 sm:mb-20">
+        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-5">
           Core Capabilities
         </div>
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-8xl font-serif-instrument tracking-tight leading-[1.08] text-white mb-6 section-title-shadow">
           Autonomous systems. Cinema-grade software.
         </h2>
-        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
-          Engineered by senior AI researchers and full-stack software architects.
+        <p class="text-white/75 text-sm sm:text-base lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl mx-auto hero-sub-shadow">
+          Engineered by senior AI researchers and full-stack software architects to scale high-growth enterprises.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
         
         <!-- CARD 1: AI Automation -->
         <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
@@ -508,20 +514,20 @@
     </section>
 
     <!-- ==================== FLAGSHIP PORTFOLIO SHOWCASE ==================== -->
-    <section id="portfolio" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
+    <section id="portfolio" class="relative z-10 py-20 sm:py-28 px-4 sm:px-8 lg:px-12 w-full max-w-[95vw] 2xl:max-w-[1750px] mx-auto">
+      <div class="text-center max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto mb-14 sm:mb-20">
+        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-5">
           Proof of Work
         </div>
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-8xl font-serif-instrument tracking-tight leading-[1.08] text-white mb-6 section-title-shadow">
           Engineered outcomes. Measurable impact.
         </h2>
-        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
-          Explore architectural teardowns of our flagship production systems.
+        <p class="text-white/75 text-sm sm:text-base lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl mx-auto hero-sub-shadow">
+          Explore architectural teardowns of our flagship production systems deployed worldwide.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
         
         <!-- CASE STUDY 1 -->
         <div class="liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between group">
@@ -1068,20 +1074,20 @@
 
       </div>
     </section>
-    <section id="pricing" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
+    <section id="pricing" class="relative z-10 py-20 sm:py-28 px-4 sm:px-8 lg:px-12 w-full max-w-[95vw] 2xl:max-w-[1750px] mx-auto">
+      <div class="text-center max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto mb-14 sm:mb-20">
+        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-5">
           Transparent Investment
         </div>
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-8xl font-serif-instrument tracking-tight leading-[1.08] text-white mb-6 section-title-shadow">
           Productized packages. Guaranteed delivery.
         </h2>
-        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
+        <p class="text-white/75 text-sm sm:text-base lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl mx-auto hero-sub-shadow">
           Fixed prices, zero hidden fees, and our institutional Spec-Match guarantee.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12 w-full">
         
         <!-- TIER 1 -->
         <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
@@ -1166,20 +1172,20 @@
     </section>
 
     <!-- ==================== 4-STEP DELIVERY ROADMAP ==================== -->
-    <section id="process" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
+    <section id="process" class="relative z-10 py-20 sm:py-28 px-4 sm:px-8 lg:px-12 w-full max-w-[95vw] 2xl:max-w-[1750px] mx-auto">
+      <div class="text-center max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto mb-14 sm:mb-20">
+        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-5">
           How We Work
         </div>
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-8xl font-serif-instrument tracking-tight leading-[1.08] text-white mb-6 section-title-shadow">
           Predictable execution. Zero guesswork.
         </h2>
-        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
+        <p class="text-white/75 text-sm sm:text-base lg:text-xl leading-relaxed max-w-3xl lg:max-w-4xl mx-auto hero-sub-shadow">
           Our 4-step engineering cadence designed for speed, clarity, and client confidence.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
         
         <div class="liquid-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
           <div>
@@ -1229,7 +1235,7 @@
     </section>
 
     <!-- ==================== ESTIMATOR (LIQUID GLASS) ==================== -->
-    <section id="estimator" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full">
+    <section id="estimator" class="relative z-10 py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto w-full">
       <div class="liquid-glass rounded-3xl p-5 sm:p-8 md:p-12 text-center">
         <span class="text-xs font-mono uppercase tracking-widest text-white/50 block mb-2">Real-Time Estimator</span>
         <h2 class="text-3xl sm:text-4xl font-serif-instrument text-white mb-3 section-title-shadow">Instant Project Calculator</h2>
@@ -1272,7 +1278,7 @@
     </section>
 
     <!-- ==================== FOUNDER SPOTLIGHT & DIRECT CONTACT ==================== -->
-    <section id="contact" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto w-full">
+    <section id="contact" class="relative z-10 py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto w-full">
       <div class="liquid-glass rounded-3xl p-6 sm:p-8 md:p-14">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
