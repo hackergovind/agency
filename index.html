@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Observe Studio — AI Automation, Web & App Development</title>
   
   <!-- Tailwind CSS -->
@@ -19,9 +19,11 @@
       --fg: #ffffff;
     }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
       background-color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     .font-serif-instrument {
@@ -30,7 +32,7 @@
 
     /* LIQUID GLASS DESIGN SYSTEM */
     .liquid-glass {
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.32);
       background-blend-mode: luminosity;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -93,7 +95,7 @@
 
     /* Sub-glass element for inputs & inner pills */
     .liquid-glass-sub {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -104,15 +106,15 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* Layered text shadows for razor-sharp legibility over continuous video */
+    /* Layered text shadows for maximum readability */
     .hero-title-shadow {
-      text-shadow: 0 0 72px rgba(0, 0, 0, 0.42), 0 4px 28px rgba(0, 0, 0, 0.28);
+      text-shadow: 0 0 72px rgba(0, 0, 0, 0.6), 0 4px 28px rgba(0, 0, 0, 0.4);
     }
     .hero-sub-shadow {
-      text-shadow: 0 0 30px rgba(0, 0, 0, 0.32), 0 1px 10px rgba(0, 0, 0, 0.20);
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 1px 10px rgba(0, 0, 0, 0.3);
     }
     .section-title-shadow {
-      text-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 0 2px 14px rgba(0, 0, 0, 0.35);
+      text-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 0 2px 14px rgba(0, 0, 0, 0.4);
     }
 
     /* Scrollbar */
@@ -131,76 +133,93 @@
     }
   </style>
 </head>
-<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen relative antialiased">
+<body class="bg-black text-white selection:bg-white selection:text-black min-h-screen relative antialiased overflow-x-hidden">
 
   <!-- ==================== FIXED AMBIENT BACKGROUND VIDEO ==================== -->
   <video id="hero-video" class="fixed inset-0 w-full h-full object-cover object-bottom pointer-events-none z-0"
          muted autoplay loop playsinline preload="auto"></video>
 
   <!-- ==================== MAIN PAGE WRAPPER ==================== -->
-  <div class="relative z-10 flex flex-col min-h-screen">
+  <div class="relative z-10 flex flex-col min-h-screen w-full overflow-x-hidden">
 
     <!-- ==================== HERO VIEWPORT (100VH) ==================== -->
-    <section class="min-h-screen relative flex flex-col justify-between">
+    <section class="min-h-screen relative flex flex-col justify-between w-full">
       
       <!-- STICKY GLASS NAVBAR -->
-      <nav class="relative z-20 px-6 py-6">
-        <div class="liquid-glass rounded-full max-w-5xl mx-auto pl-6 pr-1.5 py-1.5 flex items-center justify-between">
+      <nav class="relative z-30 px-3 sm:px-6 py-4 sm:py-6 w-full">
+        <div class="liquid-glass rounded-full max-w-5xl mx-auto pl-4 sm:pl-6 pr-2 sm:pr-2 py-1.5 flex items-center justify-between">
           
           <!-- Logo & Brand -->
           <div class="flex items-center gap-2">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6 text-white flex-shrink-0">
               <path d="M4.21 16.5 A9 9 0 0 1 16.5 4.21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               <path d="M16.5 4.21 A9 9 0 0 1 19.79 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.4 2.3"/>
               <path d="M19.79 16.5 A9 9 0 0 1 4.21 16.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.01 4.7"/>
               <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
             </svg>
-            <span class="font-semibold text-lg tracking-tight">Observe</span>
+            <span class="font-semibold text-base sm:text-lg tracking-tight">Observe</span>
             
-            <div class="hidden md:flex gap-8 ml-8">
-              <a href="#services" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Services</a>
-              <a href="#portfolio" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Work</a>
-              <a href="#pricing" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Pricing</a>
-              <a href="#process" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Roadmap</a>
-              <a href="#contact" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
+            <!-- Desktop Links -->
+            <div class="hidden md:flex gap-6 lg:gap-8 ml-6 lg:ml-8">
+              <a href="#services" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Services</a>
+              <a href="#portfolio" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Work</a>
+              <a href="#pricing" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Pricing</a>
+              <a href="#process" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Roadmap</a>
+              <a href="#contact" class="text-white/80 hover:text-white text-xs lg:text-sm font-medium transition-colors">Contact</a>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex items-center gap-4">
-            <a href="#pricing" class="text-white text-sm font-medium hidden sm:inline-block">Tiers</a>
-            <button onclick="openBookingModal('General Inquiry')" class="bg-white rounded-full px-5 py-2 text-black text-sm font-semibold whitespace-nowrap hover:scale-105 active:scale-95 transition-transform duration-300">
+          <!-- Action Buttons & Mobile Hamburger -->
+          <div class="flex items-center gap-2 sm:gap-4">
+            <a href="#pricing" class="text-white text-xs sm:text-sm font-medium hidden sm:inline-block">Tiers</a>
+            <button onclick="openBookingModal('General Inquiry')" class="bg-white rounded-full px-3.5 sm:px-5 py-1.5 sm:py-2 text-black text-xs sm:text-sm font-semibold whitespace-nowrap hover:scale-105 active:scale-95 transition-transform duration-300">
               Book Call
             </button>
+            
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileNav()" class="md:hidden liquid-glass-circle w-9 h-9 rounded-full flex items-center justify-center text-white" aria-label="Toggle navigation menu">
+              <iconify-icon id="nav-toggle-icon" icon="lucide:menu" class="text-lg"></iconify-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-nav" class="hidden md:hidden mt-3 max-w-5xl mx-auto liquid-glass rounded-2xl p-4 transition-all">
+          <div class="flex flex-col space-y-3 text-center text-sm font-medium">
+            <a href="#services" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Services</a>
+            <a href="#portfolio" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Portfolio</a>
+            <a href="#pricing" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Pricing Tiers</a>
+            <a href="#process" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Roadmap</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="py-2 rounded-xl hover:bg-white/10 transition">Contact Lead Founder</a>
           </div>
         </div>
       </nav>
 
-      <!-- HERO HEADLINE & INTAKE PILL (-translate-y-[20%]) -->
-      <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
+      <!-- HERO HEADLINE & INTAKE PILL -->
+      <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12 text-center md:-translate-y-[10%]">
         
         <!-- Live Status Pill -->
-        <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium text-white/90 mb-6 cursor-default">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Accepting Q4 Engineering Projects — 3 Development Slots Remaining</span>
+        <div class="liquid-glass inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-white/90 mb-6 cursor-default max-w-full">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+          <span class="truncate">Accepting Q4 Projects — 3 Development Slots Remaining</span>
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-6xl md:text-7xl lg:text-8xl font-serif-instrument tracking-tight whitespace-nowrap mb-4 hero-title-shadow">
+        <!-- Responsive Headline -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif-instrument tracking-tight leading-[1.1] mb-4 sm:mb-6 hero-title-shadow max-w-4xl mx-auto">
           Engineering AI, websites & <em class="italic">apps</em>
         </h1>
 
-        <!-- Subline -->
-        <p class="text-white/70 text-sm sm:text-base leading-relaxed max-w-2xl md:whitespace-nowrap mb-10 hero-sub-shadow">
+        <!-- Responsive Subline -->
+        <p class="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10 hero-sub-shadow px-2">
           Bespoke AI automation systems, modern web platforms, and mobile apps — built to scale.
         </p>
 
-        <!-- Email Capture / Discovery Pill -->
-        <div class="max-w-xl w-full">
-          <form onsubmit="handleHeroSubmit(event)" class="liquid-glass rounded-full pl-6 pr-1.5 py-1.5 flex items-center gap-3">
-            <input type="email" id="hero-email" required placeholder="Enter work email for consultation brief..."
-                   class="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/90 text-sm">
-            <button type="submit" class="bg-white rounded-full px-6 py-3 text-black text-sm font-semibold whitespace-nowrap hover:scale-105 transition-transform duration-300">
+        <!-- Fully Responsive Email Capture / Discovery Pill -->
+        <div class="max-w-xl w-full mx-auto px-2 sm:px-0">
+          <form onsubmit="handleHeroSubmit(event)" class="liquid-glass rounded-2xl sm:rounded-full p-2 sm:pl-6 sm:pr-1.5 sm:py-1.5 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+            <input type="email" id="hero-email" required placeholder="Enter work email for brief..."
+                   class="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/70 text-xs sm:text-sm px-3 py-2 sm:p-0">
+            <button type="submit" class="bg-white rounded-full px-5 py-2.5 sm:px-6 sm:py-3 text-black text-xs sm:text-sm font-semibold whitespace-nowrap hover:scale-105 active:scale-95 transition-transform duration-300">
               Book Discovery
             </button>
           </form>
@@ -211,34 +230,34 @@
 
       </div>
 
-      <!-- HERO SOCIAL / QUICK NAVIGATION CIRCLES -->
-      <div class="relative z-10 flex justify-center gap-4 pb-12">
-        <a href="#services" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="View Services">
-          <iconify-icon icon="lucide:bot" class="text-xl"></iconify-icon>
+      <!-- HERO QUICK NAVIGATION CIRCLES -->
+      <div class="relative z-10 flex justify-center gap-3 sm:gap-4 pb-8 sm:pb-12 px-4">
+        <a href="#services" class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="View Services">
+          <iconify-icon icon="lucide:bot" class="text-lg sm:text-xl"></iconify-icon>
         </a>
-        <a href="#portfolio" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="View Portfolio">
-          <iconify-icon icon="lucide:folder-git-2" class="text-xl"></iconify-icon>
+        <a href="#portfolio" class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="View Portfolio">
+          <iconify-icon icon="lucide:folder-git-2" class="text-lg sm:text-xl"></iconify-icon>
         </a>
-        <a href="#pricing" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="View Pricing Tiers">
-          <iconify-icon icon="lucide:tag" class="text-xl"></iconify-icon>
+        <a href="#pricing" class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="View Pricing Tiers">
+          <iconify-icon icon="lucide:tag" class="text-lg sm:text-xl"></iconify-icon>
         </a>
-        <a href="#contact" class="liquid-glass-circle w-14 h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="Contact Us">
-          <iconify-icon icon="lucide:arrow-down" class="text-xl"></iconify-icon>
+        <a href="#contact" class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-white/80 hover:text-white hover:bg-white/5 transition-all" title="Contact Us">
+          <iconify-icon icon="lucide:arrow-down" class="text-lg sm:text-xl"></iconify-icon>
         </a>
       </div>
 
     </section>
 
     <!-- ==================== THREE CORE ENGINEERING PILLARS ==================== -->
-    <section id="services" class="relative z-10 py-28 px-6 max-w-6xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+    <section id="services" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
           Core Capabilities
         </div>
-        <h2 class="text-4xl sm:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
           Autonomous systems. Cinema-grade software.
         </h2>
-        <p class="text-white/70 text-sm hero-sub-shadow">
+        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
           Engineered by senior AI researchers and full-stack software architects.
         </p>
       </div>
@@ -246,20 +265,20 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <!-- CARD 1: AI Automation -->
-        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
           <div>
-            <div class="liquid-glass-circle w-14 h-14 rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+            <div class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-6 text-white text-xl sm:text-2xl">
               <iconify-icon icon="lucide:bot"></iconify-icon>
             </div>
             <span class="text-xs font-mono text-white/50 uppercase tracking-widest block mb-1">01 / AUTOMATION</span>
             <h3 class="text-2xl font-serif-instrument text-white mb-3">AI Automation Systems</h3>
-            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+            <p class="text-white/70 text-xs sm:text-sm leading-relaxed mb-6 hero-sub-shadow">
               Custom autonomous multi-agent orchestration, CRM auto-sync, voice AI receptionists, and intelligent document extraction pipelines.
             </p>
             <ul class="space-y-2.5 text-xs text-white/80 border-t border-white/10 pt-4 mb-8">
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> LangGraph & CrewAI Autonomous Workflows</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> 24/7 Voice AI & Conversational Agents</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Automated Lead Triage & Calendar Booking</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> LangGraph & CrewAI Autonomous Workflows</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> 24/7 Voice AI & Conversational Agents</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Automated Lead Triage & Calendar Booking</li>
             </ul>
           </div>
           <button onclick="openBookingModal('AI Automation Sprint')" class="liquid-glass-sub w-full py-3.5 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
@@ -268,20 +287,20 @@
         </div>
 
         <!-- CARD 2: Web Development -->
-        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
           <div>
-            <div class="liquid-glass-circle w-14 h-14 rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+            <div class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-6 text-white text-xl sm:text-2xl">
               <iconify-icon icon="lucide:layout"></iconify-icon>
             </div>
             <span class="text-xs font-mono text-white/50 uppercase tracking-widest block mb-1">02 / WEB PLATFORMS</span>
             <h3 class="text-2xl font-serif-instrument text-white mb-3">Bespoke Web Development</h3>
-            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+            <p class="text-white/70 text-xs sm:text-sm leading-relaxed mb-6 hero-sub-shadow">
               Ultra-fast modern websites built with Next.js 15, fluid typography, dark liquid glass UI, and 100/100 Core Web Vitals.
             </p>
             <ul class="space-y-2.5 text-xs text-white/80 border-t border-white/10 pt-4 mb-8">
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Next.js 15, React 19 & TypeScript Engine</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Sub-second Edge Caching & Global CDN</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Headless CMS & High-Conversion UX</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Next.js 15, React 19 & TypeScript Engine</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Sub-second Edge Caching & Global CDN</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Headless CMS & High-Conversion UX</li>
             </ul>
           </div>
           <button onclick="openBookingModal('Next-Gen Web Platform')" class="liquid-glass-sub w-full py-3.5 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
@@ -290,20 +309,20 @@
         </div>
 
         <!-- CARD 3: Mobile Apps -->
-        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
           <div>
-            <div class="liquid-glass-circle w-14 h-14 rounded-full flex items-center justify-center mb-6 text-white text-2xl">
+            <div class="liquid-glass-circle w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-6 text-white text-xl sm:text-2xl">
               <iconify-icon icon="lucide:smartphone"></iconify-icon>
             </div>
             <span class="text-xs font-mono text-white/50 uppercase tracking-widest block mb-1">03 / MOBILE APPS</span>
             <h3 class="text-2xl font-serif-instrument text-white mb-3">Native & Hybrid Mobile Apps</h3>
-            <p class="text-white/70 text-sm leading-relaxed mb-6 hero-sub-shadow">
+            <p class="text-white/70 text-xs sm:text-sm leading-relaxed mb-6 hero-sub-shadow">
               End-to-end iOS and Android applications with real-time cloud synchronization, push notifications, and guaranteed App Store approval.
             </p>
             <ul class="space-y-2.5 text-xs text-white/80 border-t border-white/10 pt-4 mb-8">
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Flutter, React Native, Swift & Kotlin</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Offline-first Sync & Biometric Auth</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> In-App Purchases & On-Device AI</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Flutter, React Native, Swift & Kotlin</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Offline-first Sync & Biometric Auth</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> In-App Purchases & On-Device AI</li>
             </ul>
           </div>
           <button onclick="openBookingModal('Turnkey Mobile App MVP')" class="liquid-glass-sub w-full py-3.5 rounded-full text-xs font-medium text-white hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
@@ -315,15 +334,15 @@
     </section>
 
     <!-- ==================== FLAGSHIP PORTFOLIO SHOWCASE ==================== -->
-    <section id="portfolio" class="relative z-10 py-24 px-6 max-w-6xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+    <section id="portfolio" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
           Proof of Work
         </div>
-        <h2 class="text-4xl sm:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
           Engineered outcomes. Measurable impact.
         </h2>
-        <p class="text-white/70 text-sm hero-sub-shadow">
+        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
           Explore architectural teardowns of our flagship production systems.
         </p>
       </div>
@@ -331,7 +350,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <!-- CASE STUDY 1 -->
-        <div class="liquid-glass rounded-3xl p-7 flex flex-col justify-between group">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between text-xs font-mono text-white/50 mb-3">
               <span>AI AUTOMATION</span>
@@ -352,7 +371,7 @@
         </div>
 
         <!-- CASE STUDY 2 -->
-        <div class="liquid-glass rounded-3xl p-7 flex flex-col justify-between group">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between text-xs font-mono text-white/50 mb-3">
               <span>WEB PLATFORM</span>
@@ -373,7 +392,7 @@
         </div>
 
         <!-- CASE STUDY 3 -->
-        <div class="liquid-glass rounded-3xl p-7 flex flex-col justify-between group">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between text-xs font-mono text-white/50 mb-3">
               <span>MOBILE APPLICATION</span>
@@ -397,23 +416,23 @@
     </section>
 
     <!-- ==================== PRODUCTIZED PRICING TIERS & GUARANTEE ==================== -->
-    <section id="pricing" class="relative z-10 py-24 px-6 max-w-6xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+    <section id="pricing" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
           Transparent Investment
         </div>
-        <h2 class="text-4xl sm:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
           Productized packages. Guaranteed delivery.
         </h2>
-        <p class="text-white/70 text-sm hero-sub-shadow">
+        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
           Fixed prices, zero hidden fees, and our institutional Spec-Match guarantee.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         
         <!-- TIER 1 -->
-        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono uppercase text-white/50 mb-1">SPRINT 01</div>
             <h3 class="text-2xl font-serif-instrument text-white mb-2">AI Automation Sprint</h3>
@@ -421,11 +440,11 @@
             <div class="text-xs text-emerald-400 font-mono mb-6">Delivery in 10 Days</div>
             
             <ul class="space-y-3 text-xs text-white/80 border-t border-white/10 pt-6 mb-8">
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Autonomous Lead Qualification Agent</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Real-time CRM, Slack & Database Sync</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Deterministic RAG (Zero Hallucination)</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Full API Webhooks & Security Hardening</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> 30-Day Post-Launch Maintenance</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Autonomous Lead Qualification Agent</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Real-time CRM, Slack & Database Sync</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Deterministic RAG (Zero Hallucination)</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Full API Webhooks & Security Hardening</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> 30-Day Post-Launch Maintenance</li>
             </ul>
           </div>
           <button onclick="openBookingModal('AI Automation Sprint ($2,400)')" class="w-full py-3.5 rounded-full bg-white text-black text-xs font-semibold hover:scale-105 active:scale-95 transition">
@@ -434,7 +453,7 @@
         </div>
 
         <!-- TIER 2 (FEATURED) -->
-        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between border-2 border-white/30 relative">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-2 border-white/30 relative">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-black px-4 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase">
             Most Popular
           </div>
@@ -445,11 +464,11 @@
             <div class="text-xs text-emerald-400 font-mono mb-6">Delivery in 14 Days</div>
             
             <ul class="space-y-3 text-xs text-white/80 border-t border-white/10 pt-6 mb-8">
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Next.js 15 App Router & React 19</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Cinema-Grade Liquid Glass UI & 3D Elements</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Headless CMS & Dynamic Blog/Products</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> 100/100 Core Web Vitals Guaranteed</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Stripe Checkout & Cal.com Scheduling</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Next.js 15 App Router & React 19</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Cinema-Grade Liquid Glass UI & 3D Elements</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Headless CMS & Dynamic Blog/Products</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> 100/100 Core Web Vitals Guaranteed</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Stripe Checkout & Cal.com Scheduling</li>
             </ul>
           </div>
           <button onclick="openBookingModal('Next-Gen Web Platform ($3,800)')" class="w-full py-3.5 rounded-full bg-white text-black text-xs font-semibold hover:scale-105 active:scale-95 transition">
@@ -458,7 +477,7 @@
         </div>
 
         <!-- TIER 3 -->
-        <div class="liquid-glass rounded-3xl p-8 flex flex-col justify-between">
+        <div class="liquid-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono uppercase text-white/50 mb-1">SPRINT 03</div>
             <h3 class="text-2xl font-serif-instrument text-white mb-2">Turnkey Mobile App MVP</h3>
@@ -466,11 +485,11 @@
             <div class="text-xs text-emerald-400 font-mono mb-6">Delivery in 4 Weeks</div>
             
             <ul class="space-y-3 text-xs text-white/80 border-t border-white/10 pt-6 mb-8">
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Cross-Platform iOS & Android Codebase</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Flutter or React Native Architecture</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Supabase Cloud Database & Biometrics</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Push Notifications & In-App Subscriptions</li>
-              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> 100% Guaranteed App Store Approval</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Cross-Platform iOS & Android Codebase</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Flutter or React Native Architecture</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Supabase Cloud Database & Biometrics</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> Push Notifications & In-App Subscriptions</li>
+              <li class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white flex-shrink-0"></iconify-icon> 100% Guaranteed App Store Approval</li>
             </ul>
           </div>
           <button onclick="openBookingModal('Turnkey Mobile App MVP ($6,500)')" class="w-full py-3.5 rounded-full bg-white text-black text-xs font-semibold hover:scale-105 active:scale-95 transition">
@@ -481,36 +500,36 @@
       </div>
 
       <!-- SPEC-MATCH GUARANTEE BANNER -->
-      <div class="liquid-glass rounded-2xl p-6 text-center max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 border border-white/20">
-        <div class="flex items-center gap-4 text-left">
-          <div class="w-12 h-12 rounded-full liquid-glass-circle flex items-center justify-center text-2xl flex-shrink-0">
+      <div class="liquid-glass rounded-2xl p-4 sm:p-6 text-center max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 border border-white/20">
+        <div class="flex items-center gap-3 sm:gap-4 text-left">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full liquid-glass-circle flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
             <iconify-icon icon="lucide:shield-check"></iconify-icon>
           </div>
           <div>
-            <div class="text-sm font-semibold text-white">The Observe Spec-Match Guarantee</div>
-            <div class="text-xs text-white/70">If the working prototype does not match the agreed technical specification, we revise it at zero additional cost until it does.</div>
+            <div class="text-xs sm:text-sm font-semibold text-white">The Observe Spec-Match Guarantee</div>
+            <div class="text-[11px] sm:text-xs text-white/70">If the working prototype does not match the agreed technical specification, we revise it at zero additional cost until it does.</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==================== 4-STEP DELIVERY ROADMAP ==================== -->
-    <section id="process" class="relative z-10 py-24 px-6 max-w-5xl mx-auto w-full">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+    <section id="process" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="liquid-glass inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-mono uppercase tracking-widest text-white/80 mb-4">
           How We Work
         </div>
-        <h2 class="text-4xl sm:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
+        <h2 class="text-3xl sm:text-5xl md:text-6xl font-serif-instrument text-white mb-4 section-title-shadow">
           Predictable execution. Zero guesswork.
         </h2>
-        <p class="text-white/70 text-sm hero-sub-shadow">
+        <p class="text-white/70 text-xs sm:text-sm hero-sub-shadow">
           Our 4-step engineering cadence designed for speed, clarity, and client confidence.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <div class="liquid-glass rounded-2xl p-6 flex flex-col justify-between">
+        <div class="liquid-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono text-emerald-400 mb-2">DAYS 01–03</div>
             <h4 class="text-xl font-serif-instrument text-white mb-2">1. Blueprint & Audit</h4>
@@ -521,7 +540,7 @@
           <div class="text-[11px] font-mono text-white/40 mt-4">Deliverable: Spec Doc</div>
         </div>
 
-        <div class="liquid-glass rounded-2xl p-6 flex flex-col justify-between">
+        <div class="liquid-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono text-emerald-400 mb-2">DAYS 04–08</div>
             <h4 class="text-xl font-serif-instrument text-white mb-2">2. Staging Prototype</h4>
@@ -532,7 +551,7 @@
           <div class="text-[11px] font-mono text-white/40 mt-4">Deliverable: Working Demo</div>
         </div>
 
-        <div class="liquid-glass rounded-2xl p-6 flex flex-col justify-between">
+        <div class="liquid-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono text-emerald-400 mb-2">DAYS 09–14</div>
             <h4 class="text-xl font-serif-instrument text-white mb-2">3. Hardening & QA</h4>
@@ -543,7 +562,7 @@
           <div class="text-[11px] font-mono text-white/40 mt-4">Deliverable: 100% Passes</div>
         </div>
 
-        <div class="liquid-glass rounded-2xl p-6 flex flex-col justify-between">
+        <div class="liquid-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono text-emerald-400 mb-2">DAY 15+</div>
             <h4 class="text-xl font-serif-instrument text-white mb-2">4. Launch & Handover</h4>
@@ -558,13 +577,13 @@
     </section>
 
     <!-- ==================== ESTIMATOR (LIQUID GLASS) ==================== -->
-    <section id="estimator" class="relative z-10 py-20 px-6 max-w-4xl mx-auto w-full">
-      <div class="liquid-glass rounded-3xl p-8 md:p-12 text-center">
+    <section id="estimator" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full">
+      <div class="liquid-glass rounded-3xl p-5 sm:p-8 md:p-12 text-center">
         <span class="text-xs font-mono uppercase tracking-widest text-white/50 block mb-2">Real-Time Estimator</span>
-        <h2 class="text-4xl font-serif-instrument text-white mb-3 section-title-shadow">Instant Project Calculator</h2>
-        <p class="text-white/70 text-sm max-w-md mx-auto mb-8 hero-sub-shadow">Select your target deliverables to calculate live investment and delivery estimates.</p>
+        <h2 class="text-3xl sm:text-4xl font-serif-instrument text-white mb-3 section-title-shadow">Instant Project Calculator</h2>
+        <p class="text-white/70 text-xs sm:text-sm max-w-md mx-auto mb-8 hero-sub-shadow">Select your target deliverables to calculate live investment and delivery estimates.</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-left mb-8">
           <label class="liquid-glass-sub p-4 rounded-2xl flex items-start gap-3 cursor-pointer hover:bg-white/10 transition">
             <input type="checkbox" id="est-ai" onchange="calc()" checked class="mt-1 accent-white">
             <div>
@@ -588,12 +607,12 @@
           </label>
         </div>
 
-        <div class="liquid-glass rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="text-left">
+        <div class="liquid-glass rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div>
             <div class="text-xs text-white/50 font-mono">ESTIMATED INVESTMENT</div>
-            <div id="est-val" class="text-3xl font-serif-instrument text-white font-bold section-title-shadow">$4,500 – $6,200</div>
+            <div id="est-val" class="text-2xl sm:text-3xl font-serif-instrument text-white font-bold section-title-shadow">$4,500 – $6,200</div>
           </div>
-          <button onclick="openBookingModal('Custom Estimate Package')" class="bg-white text-black font-semibold px-6 py-3 rounded-full text-xs hover:scale-105 active:scale-95 transition whitespace-nowrap shadow-md">
+          <button onclick="openBookingModal('Custom Estimate Package')" class="w-full sm:w-auto bg-white text-black font-semibold px-6 py-3 rounded-full text-xs hover:scale-105 active:scale-95 transition whitespace-nowrap shadow-md">
             Lock In Estimate <iconify-icon icon="lucide:arrow-right" class="inline ml-1"></iconify-icon>
           </button>
         </div>
@@ -601,46 +620,46 @@
     </section>
 
     <!-- ==================== FOUNDER SPOTLIGHT & DIRECT CONTACT ==================== -->
-    <section id="contact" class="relative z-10 py-24 px-6 max-w-4xl mx-auto w-full">
-      <div class="liquid-glass rounded-3xl p-8 md:p-14">
+    <section id="contact" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto w-full">
+      <div class="liquid-glass rounded-3xl p-6 sm:p-8 md:p-14">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
           
           <!-- Founder Bio & Direct Accountability -->
           <div class="text-left">
             <div class="liquid-glass inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono text-white/80 mb-4">
               Lead Engineering
             </div>
-            <h2 class="text-3xl sm:text-4xl font-serif-instrument text-white mb-3">Direct access to the builder.</h2>
+            <h2 class="text-2xl sm:text-4xl font-serif-instrument text-white mb-3">Direct access to the builder.</h2>
             <p class="text-white/70 text-xs sm:text-sm leading-relaxed mb-6">
               When you hire Observe Studio, your project is engineered directly by **Govind Singh** and senior systems developers. Zero account managers, zero offshore hand-offs.
             </p>
 
             <div class="space-y-3 text-xs text-white/80">
               <div class="flex items-center gap-3">
-                <iconify-icon icon="lucide:github" class="text-lg text-white"></iconify-icon>
-                <a href="https://github.com/hackergovind" target="_blank" class="hover:underline text-white font-mono">github.com/hackergovind</a>
+                <iconify-icon icon="lucide:github" class="text-lg text-white flex-shrink-0"></iconify-icon>
+                <a href="https://github.com/hackergovind" target="_blank" class="hover:underline text-white font-mono truncate">github.com/hackergovind</a>
               </div>
               <div class="flex items-center gap-3">
-                <iconify-icon icon="lucide:mail" class="text-lg text-white"></iconify-icon>
-                <span class="font-mono text-white">govindsinghpratap123@gmail.com</span>
+                <iconify-icon icon="lucide:mail" class="text-lg text-white flex-shrink-0"></iconify-icon>
+                <span class="font-mono text-white truncate">govindsinghpratap123@gmail.com</span>
               </div>
               <div class="flex items-center gap-3">
-                <iconify-icon icon="lucide:clock" class="text-lg text-white"></iconify-icon>
-                <span>Average Response Time: <strong class="text-emerald-400 font-normal">Under 4 Hours</strong></span>
+                <iconify-icon icon="lucide:clock" class="text-lg text-white flex-shrink-0"></iconify-icon>
+                <span>Average Response: <strong class="text-emerald-400 font-normal">Under 4 Hours</strong></span>
               </div>
             </div>
 
             <div class="mt-8">
-              <button onclick="openBookingModal('Direct Founder Session')" class="bg-white text-black font-semibold px-6 py-3 rounded-full text-xs hover:scale-105 transition shadow-lg">
+              <button onclick="openBookingModal('Direct Founder Session')" class="w-full sm:w-auto bg-white text-black font-semibold px-6 py-3 rounded-full text-xs hover:scale-105 transition shadow-lg">
                 Schedule Founder Call
               </button>
             </div>
           </div>
 
           <!-- Direct Inquiry Form -->
-          <div class="liquid-glass-sub p-6 rounded-2xl text-left">
-            <h3 class="text-xl font-serif-instrument text-white mb-2">Send Project Brief</h3>
+          <div class="liquid-glass-sub p-5 sm:p-6 rounded-2xl text-left">
+            <h3 class="text-lg sm:text-xl font-serif-instrument text-white mb-2">Send Project Brief</h3>
             <p class="text-white/60 text-xs mb-4">Receive a same-day architecture roadmap and estimate.</p>
 
             <form onsubmit="handleContact(event)" class="space-y-3">
@@ -676,29 +695,29 @@
     </section>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="relative z-10 py-12 px-6">
-      <div class="liquid-glass rounded-full max-w-5xl mx-auto px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer class="relative z-10 py-8 sm:py-12 px-4 sm:px-6 w-full">
+      <div class="liquid-glass rounded-3xl sm:rounded-full max-w-5xl mx-auto px-6 sm:px-8 py-4 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
         
         <div class="flex items-center gap-3">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 text-white">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 text-white flex-shrink-0">
             <path d="M4.21 16.5 A9 9 0 0 1 16.5 4.21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M16.5 4.21 A9 9 0 0 1 19.79 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.4 2.3"/>
             <path d="M19.79 16.5 A9 9 0 0 1 4.21 16.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.01 4.7"/>
             <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
           </svg>
-          <span class="text-sm font-semibold tracking-tight">Observe Studio</span>
-          <span class="text-xs text-white/40 ml-2">© 2026 Observe Systems Inc. Built by Govind Singh.</span>
+          <span class="text-xs sm:text-sm font-semibold tracking-tight">Observe Studio</span>
+          <span class="text-[11px] text-white/40 ml-1 sm:ml-2">© 2026 Govind Singh.</span>
         </div>
 
         <div class="flex items-center gap-3">
-          <a href="https://github.com/hackergovind" target="_blank" class="liquid-glass-circle w-10 h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition" aria-label="GitHub">
-            <iconify-icon icon="lucide:github" class="text-base"></iconify-icon>
+          <a href="https://github.com/hackergovind" target="_blank" class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition" aria-label="GitHub">
+            <iconify-icon icon="lucide:github" class="text-sm sm:text-base"></iconify-icon>
           </a>
-          <a href="https://twitter.com" target="_blank" class="liquid-glass-circle w-10 h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition" aria-label="Twitter">
-            <iconify-icon icon="lucide:twitter" class="text-base"></iconify-icon>
+          <a href="https://twitter.com" target="_blank" class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition" aria-label="Twitter">
+            <iconify-icon icon="lucide:twitter" class="text-sm sm:text-base"></iconify-icon>
           </a>
-          <a href="https://linkedin.com" target="_blank" class="liquid-glass-circle w-10 h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition" aria-label="LinkedIn">
-            <iconify-icon icon="lucide:linkedin" class="text-base"></iconify-icon>
+          <a href="https://linkedin.com" target="_blank" class="liquid-glass-circle w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition" aria-label="LinkedIn">
+            <iconify-icon icon="lucide:linkedin" class="text-sm sm:text-base"></iconify-icon>
           </a>
         </div>
 
@@ -708,36 +727,36 @@
   </div>
 
   <!-- ==================== 2-STEP CALENDAR BOOKING MODAL ==================== -->
-  <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
-    <div class="liquid-glass rounded-3xl max-w-lg w-full p-8 relative border border-white/20">
+  <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md hidden">
+    <div class="liquid-glass rounded-3xl max-w-lg w-full p-5 sm:p-8 relative border border-white/20 max-h-[92vh] overflow-y-auto">
       
       <!-- Close Button -->
-      <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-white/60 hover:text-white text-xl">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 text-white/60 hover:text-white text-xl">
         <iconify-icon icon="lucide:x"></iconify-icon>
       </button>
 
       <!-- STEP 1: PRE-QUALIFICATION INTAKE -->
       <div id="booking-step-1">
-        <div class="liquid-glass inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono text-emerald-400 mb-3">
+        <div class="liquid-glass inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-mono text-emerald-400 mb-3">
           <span>● Step 1 of 2: Quick Scoping</span>
         </div>
-        <h3 class="text-3xl font-serif-instrument text-white mb-2 section-title-shadow">Book Strategy Session</h3>
-        <p class="text-xs text-white/70 mb-6 hero-sub-shadow">
+        <h3 class="text-2xl sm:text-3xl font-serif-instrument text-white mb-2 section-title-shadow">Book Strategy Session</h3>
+        <p class="text-xs text-white/70 mb-5 sm:mb-6 hero-sub-shadow">
           A focused 20-minute architecture review with our principal developer.
         </p>
 
-        <form onsubmit="handleBookingStep1(event)" class="space-y-3.5 text-left">
+        <form onsubmit="handleBookingStep1(event)" class="space-y-3 sm:space-y-3.5 text-left">
           <div>
             <label class="text-xs text-white/60 block mb-1">Your Name</label>
-            <input type="text" id="book-name" required placeholder="Alex Vance" class="w-full liquid-glass-sub rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+            <input type="text" id="book-name" required placeholder="Alex Vance" class="w-full liquid-glass-sub rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white outline-none">
           </div>
           <div>
             <label class="text-xs text-white/60 block mb-1">Work Email</label>
-            <input type="email" id="book-email" required placeholder="alex@company.com" class="w-full liquid-glass-sub rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+            <input type="email" id="book-email" required placeholder="alex@company.com" class="w-full liquid-glass-sub rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white outline-none">
           </div>
           <div>
             <label class="text-xs text-white/60 block mb-1">Target Package / Need</label>
-            <input type="text" id="book-service" value="AI Automation Sprint" class="w-full liquid-glass-sub rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+            <input type="text" id="book-service" value="AI Automation Sprint" class="w-full liquid-glass-sub rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white outline-none">
           </div>
           <button type="submit" class="w-full bg-white text-black font-semibold py-3 rounded-full text-xs hover:scale-[1.01] transition shadow-lg mt-2">
             Continue to Calendar Selection →
@@ -747,18 +766,18 @@
 
       <!-- STEP 2: CALENDAR SELECTION (EMBEDDED SCHEDULER) -->
       <div id="booking-step-2" class="hidden">
-        <div class="liquid-glass inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono text-emerald-400 mb-3">
+        <div class="liquid-glass inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-mono text-emerald-400 mb-3">
           <span>● Step 2 of 2: Pick Your Time Slot</span>
         </div>
-        <h3 class="text-2xl font-serif-instrument text-white mb-1">Select Date & Time</h3>
-        <p class="text-xs text-white/70 mb-4" id="step2-summary">
+        <h3 class="text-xl sm:text-2xl font-serif-instrument text-white mb-1">Select Date & Time</h3>
+        <p class="text-xs text-white/70 mb-4 truncate" id="step2-summary">
           Confirmed for <span id="confirmed-name" class="text-white font-medium"></span> (<span id="confirmed-email" class="text-white/90"></span>)
         </p>
 
         <!-- Interactive Scheduler Preview / Slot Picker -->
         <div class="liquid-glass-sub rounded-2xl p-4 mb-4 text-left">
-          <div class="text-xs font-mono text-white/50 uppercase mb-3">Available Slots This Week:</div>
-          <div class="grid grid-cols-2 gap-2 text-xs mb-4">
+          <div class="text-[11px] font-mono text-white/50 uppercase mb-3">Available Slots This Week:</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs mb-4">
             <button onclick="confirmSlot('Tomorrow, 2:00 PM EST')" class="p-2.5 rounded-xl liquid-glass text-left hover:bg-white hover:text-black transition">
               <div class="font-semibold">Tomorrow</div>
               <div class="text-white/60 hover:text-black/60 text-[11px]">2:00 PM EST</div>
@@ -795,9 +814,9 @@
   </div>
 
   <!-- ==================== CASE STUDY TEARDOWN MODAL ==================== -->
-  <div id="case-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden">
-    <div class="liquid-glass rounded-3xl max-w-2xl w-full p-8 relative border border-white/20 max-h-[90vh] overflow-y-auto">
-      <button onclick="closeCaseStudyModal()" class="absolute top-5 right-5 text-white/60 hover:text-white text-xl">
+  <div id="case-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md hidden">
+    <div class="liquid-glass rounded-3xl max-w-2xl w-full p-5 sm:p-8 relative border border-white/20 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCaseStudyModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 text-white/60 hover:text-white text-xl">
         <iconify-icon icon="lucide:x"></iconify-icon>
       </button>
 
@@ -807,21 +826,21 @@
     </div>
   </div>
 
-  <!-- ==================== FLOATING INTERACTIVE AI SCOPING AGENT ==================== -->
-  <div class="fixed bottom-6 right-6 z-40">
+  <!-- ==================== RESPONSIVE FLOATING AI SCOPING AGENT ==================== -->
+  <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
     
     <!-- Collapsed Floating Button -->
-    <button id="ai-chat-btn" onclick="toggleAIChat()" class="liquid-glass rounded-full pl-4 pr-5 py-3 flex items-center gap-3 hover:scale-105 transition-all shadow-2xl border border-white/20">
-      <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+    <button id="ai-chat-btn" onclick="toggleAIChat()" class="liquid-glass rounded-full pl-3.5 pr-4 py-2.5 sm:pl-4 sm:pr-5 sm:py-3 flex items-center gap-2.5 sm:gap-3 hover:scale-105 transition-all shadow-2xl border border-white/20">
+      <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></div>
       <div class="text-left">
         <div class="text-xs font-semibold text-white">AI Scoping Agent</div>
-        <div class="text-[10px] text-white/60">Live interactive assistance</div>
+        <div class="text-[10px] text-white/60 hidden xs:block">Live interactive help</div>
       </div>
-      <iconify-icon icon="lucide:sparkles" class="text-white text-base"></iconify-icon>
+      <iconify-icon icon="lucide:sparkles" class="text-white text-sm sm:text-base"></iconify-icon>
     </button>
 
     <!-- Expanded Chat Container -->
-    <div id="ai-chat-window" class="hidden liquid-glass rounded-3xl w-80 sm:w-96 p-5 border border-white/20 shadow-2xl flex flex-col h-[460px] text-left">
+    <div id="ai-chat-window" class="hidden liquid-glass rounded-3xl w-[calc(100vw-2rem)] sm:w-96 max-w-[400px] p-4 sm:p-5 border border-white/20 shadow-2xl flex flex-col h-[440px] sm:h-[460px] text-left">
       <!-- Header -->
       <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
         <div class="flex items-center gap-2">
@@ -870,10 +889,23 @@
 
   <!-- ==================== JAVASCRIPT LOGIC ==================== -->
   <script>
-    // Fixed Ambient Video Setup (0.5x speed, full opacity, native loop)
+    // Video Setup (0.5x speed, full opacity, native loop)
     const video = document.getElementById('hero-video');
     video.src = "https://designerstephen.github.io/public-assets/videos/observe-hero.mp4";
     video.playbackRate = 0.5;
+
+    // Mobile Navigation Toggle
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobile-nav');
+      const icon = document.getElementById('nav-toggle-icon');
+      if (nav.classList.contains('hidden')) {
+        nav.classList.remove('hidden');
+        icon.setAttribute('icon', 'lucide:x');
+      } else {
+        nav.classList.add('hidden');
+        icon.setAttribute('icon', 'lucide:menu');
+      }
+    }
 
     // Cost Estimator calculation
     function calc() {
@@ -974,7 +1006,7 @@
       const data = caseStudies[id];
       const html = `
         <div class="text-xs font-mono text-emerald-400 mb-1">${data.duration} • ${data.client}</div>
-        <h3 class="text-3xl font-serif-instrument text-white mb-4">${data.title}</h3>
+        <h3 class="text-2xl sm:text-3xl font-serif-instrument text-white mb-4">${data.title}</h3>
         
         <div class="space-y-4 text-xs text-white/80 mb-6">
           <div>
@@ -990,7 +1022,7 @@
         <div class="liquid-glass-sub p-4 rounded-2xl mb-6">
           <div class="text-xs font-mono text-white/50 uppercase mb-2">Verified Outcomes:</div>
           <ul class="space-y-1.5 text-xs text-white">
-            ${data.metrics.map(m => `<li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-emerald-400"></iconify-icon> ${m}</li>`).join('')}
+            ${data.metrics.map(m => `<li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-emerald-400 flex-shrink-0"></iconify-icon> ${m}</li>`).join('')}
           </ul>
         </div>
 
@@ -1038,7 +1070,6 @@
       if (!text) return;
 
       const msgContainer = document.getElementById('ai-messages');
-      // Append user msg
       msgContainer.innerHTML += `
         <div class="bg-white/10 p-3 rounded-2xl rounded-tr-none text-right text-white ml-6">
           ${text}
@@ -1047,7 +1078,6 @@
       input.value = '';
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
-      // Generate intelligent response
       setTimeout(() => {
         let reply = "";
         const lower = text.toLowerCase();
