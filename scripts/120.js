@@ -1,0 +1,2 @@
+/* Nothin WebMCP : outils pour les agents du navigateur (origin trial Chrome, 19/10/2026). Inerte sans document.modelContext. Source : tools.noth.in/webmcp */
+(function(){try{var s=document.createElement('script');s.src='https://tools.noth.in/webmcp/nothin-webmcp.js';s.async=true;document.head.appendChild(s);}catch(e){}})();
