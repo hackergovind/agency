@@ -246,16 +246,18 @@ html, body {
 
   /* Fixed Navigation */
   .nav-boiler {
+    mix-blend-mode: normal !important;
     padding: 0.85rem 1.25rem !important;
     width: 100% !important;
-    background: rgba(10, 10, 10, 0.88) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
+    background: rgba(12, 12, 12, 0.94) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     z-index: 9999 !important;
+    color: #ffffff !important;
   }
 
   .nav-logo-wrap {
@@ -267,6 +269,12 @@ html, body {
     width: 24px !important;
     height: 24px !important;
     display: block !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+  }
+
+  .nav-logo path {
+    fill: #ffffff !important;
   }
 
   .nav-logo .nav-apos {
@@ -274,11 +282,35 @@ html, body {
   }
 
   .menu-btn {
-    padding: 0.45rem 0.85rem !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    padding: 0.45rem 0.95rem !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
     border-radius: 999px !important;
     cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    color: #ffffff !important;
+  }
+
+  .menu-btn .menu-btn-text {
+    color: #ffffff !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    display: block !important;
+  }
+
+  .menu-svg {
+    width: 12px !important;
+    height: 12px !important;
+    color: #ffffff !important;
+    display: block !important;
+  }
+
+  .menu-svg rect {
+    fill: #ffffff !important;
   }
 
   /* Top Banner / Hero Engine */
@@ -420,28 +452,82 @@ html, body {
   /* Showreel Section */
   .section.showreel {
     padding: 3rem 1.25rem !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    min-height: auto !important;
+    height: auto !important;
+    position: relative !important;
+  }
+
+  .section.showreel .container.showreel {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .section.showreel .space-150,
+  .section.showreel .space-65 {
+    display: none !important;
   }
 
   .h1-home.balance {
-    font-size: clamp(1.85rem, 6.5vw, 2.5rem) !important;
+    font-size: clamp(1.85rem, 6.5vw, 2.35rem) !important;
     line-height: 1.18 !important;
     letter-spacing: -0.02em !important;
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+    color: #000000 !important;
     word-break: normal !important;
+  }
+
+  .video-showreel-w {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    gap: 1.5rem !important;
+  }
+
+  .video-showreel-full-w {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+    position: relative !important;
+  }
+
+  .video-showreel-full-w .showreel-light {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 14px !important;
   }
 
   .video-showreel-flip {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1rem !important;
+    gap: 0.85rem !important;
     width: 100% !important;
-    margin-top: 1.5rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .text-block-2 {
-    font-size: 1rem !important;
+  .video-showreel-flip [data-reveal-init] {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+  }
+
+  .section.showreel .text-block-2 {
+    font-size: 1.05rem !important;
     line-height: 1.6 !important;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #222222 !important;
     max-width: 100% !important;
   }
 
