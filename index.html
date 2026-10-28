@@ -165,8 +165,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 #lemonic-particle-hero {
   position: relative !important;
   width: 100% !important;
-  max-width: 1100px !important;
-  height: 250px !important;
+  max-width: 1250px !important;
+  height: 280px !important;
   margin: 0 auto !important;
   display: flex !important;
   align-items: center !important;
@@ -184,7 +184,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 @media (max-width: 991px) {
   #lemonic-particle-hero {
-    height: 135px !important;
+    height: 140px !important;
     max-width: 100% !important;
   }
 }
@@ -2007,8 +2007,8 @@ console.log(
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return;
 
-  // Website theme colors: pure white, platinum, electric cyber lemon & neon lime accents
-  const colors = ['#ffffff', '#f4f4f5', '#e2f952', '#d4ff00', '#bef264', '#e2e8f0'];
+  // Modern luxury palette: crisp Diamond White & luminous Electric Cyan / Azure
+  const colors = ['#ffffff', '#ffffff', '#00f0ff', '#38bdf8', '#e0f2fe', '#7dd3fc'];
   let particles = [];
   let animId = null;
   let isVisible = true;
@@ -2024,15 +2024,15 @@ console.log(
       this.originX = originX;
       this.originY = originY;
       const angle = Math.random() * Math.PI * 2;
-      const dist = 30 + Math.random() * 70;
+      const dist = 25 + Math.random() * 55;
       this.x = originX + Math.cos(angle) * dist;
       this.y = originY + Math.sin(angle) * dist;
       this.vx = (Math.random() - 0.5) * 2;
       this.vy = (Math.random() - 0.5) * 2;
       this.color = color;
-      this.size = Math.random() > 0.85 ? 2.2 : 1.6;
-      this.ease = 0.068 + Math.random() * 0.035;
-      this.friction = 0.83;
+      this.size = Math.random() > 0.82 ? 1.85 : 1.3;
+      this.ease = 0.072 + Math.random() * 0.035;
+      this.friction = 0.84;
     }
 
     update() {
@@ -2043,7 +2043,7 @@ console.log(
       if (dist < mouse.radius) {
         const force = (mouse.radius - dist) / mouse.radius;
         const angle = Math.atan2(dy, dx);
-        const push = force * 30;
+        const push = force * 28;
         this.vx -= Math.cos(angle) * push;
         this.vy -= Math.sin(angle) * push;
       }
@@ -2081,13 +2081,14 @@ console.log(
     off.width = w;
     off.height = h;
 
-    const fontSize = Math.min(w * 0.165, 145);
+    // Sleeker, thinner, more spacious modern geometric typography
+    const fontSize = Math.min(w * 0.165, 160);
     offCtx.fillStyle = '#ffffff';
-    offCtx.font = '900 ' + fontSize + 'px "Space Grotesk", "Impact", "Arial Black", sans-serif';
+    offCtx.font = '600 ' + fontSize + 'px "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif';
     offCtx.textAlign = 'center';
     offCtx.textBaseline = 'middle';
     if ('letterSpacing' in offCtx) {
-      offCtx.letterSpacing = '0.06em';
+      offCtx.letterSpacing = '0.12em';
     }
     offCtx.fillText('LEMONIC', w / 2, h / 2);
 
@@ -2095,12 +2096,12 @@ console.log(
     const data = imgData.data;
     particles = [];
 
-    const step = w < 600 ? 4 : 3;
+    const step = w < 600 ? 3.5 : 3;
 
     for (let y = 0; y < h; y += step) {
       for (let x = 0; x < w; x += step) {
-        const index = (y * w + x) * 4;
-        if (data[index + 3] > 120) {
+        const index = Math.floor(y * w + x) * 4;
+        if (data[index + 3] > 110) {
           const color = colors[Math.floor(Math.random() * colors.length)];
           particles.push(new Particle(x, y, color));
         }
