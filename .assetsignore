@@ -1,0 +1,7 @@
+.git
+.git/**
+.github
+.github/**
+.gitignore
+*.md
+wrangler.json
