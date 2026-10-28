@@ -261,6 +261,7 @@ html, body {
   }
 
   .nav-logo-wrap {
+    flex: 0 0 auto !important;
     display: flex !important;
     align-items: center !important;
   }
@@ -281,36 +282,43 @@ html, body {
     display: none !important;
   }
 
-  .menu-btn {
-    padding: 0.45rem 0.95rem !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-    border-radius: 999px !important;
-    cursor: pointer !important;
+  .menu-w {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin-left: auto !important;
     display: flex !important;
     align-items: center !important;
+  }
+
+  .menu-btn {
+    width: auto !important;
+    max-width: fit-content !important;
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 0.5rem !important;
-    color: #ffffff !important;
+    padding: 0.45rem 1.05rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 999px !important;
+    cursor: pointer !important;
   }
 
   .menu-btn .menu-btn-text {
-    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     font-size: 0.8rem !important;
     font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.06em !important;
+    color: #ffffff !important;
     display: block !important;
   }
 
   .menu-svg {
-    width: 12px !important;
-    height: 12px !important;
-    color: #ffffff !important;
-    display: block !important;
-  }
-
-  .menu-svg rect {
-    fill: #ffffff !important;
+    display: none !important;
   }
 
   /* Top Banner / Hero Engine */
