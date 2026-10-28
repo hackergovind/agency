@@ -685,25 +685,94 @@ html, body {
     display: none !important;
   }
 
-  /* Glitch Section */
+  /* Studio & Glitch Section Boundary Separation */
+  .section.info-img {
+    padding-bottom: 3.5rem !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Glitch Section Mobile Architecture */
   .section.glitch {
-    height: auto !important;
+    position: relative !important;
+    z-index: 2 !important;
+    margin-top: 0 !important;
+    clear: both !important;
+    padding: 3rem 1.25rem 4rem !important;
+    background: #000000 !important;
     min-height: auto !important;
-    padding: 3rem 1.25rem !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .glitch-img-w {
+    width: 100% !important;
+    max-width: 360px !important;
+    height: 360px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    margin: 0 auto 1.75rem !important;
+    position: relative !important;
+  }
+
+  .glitch-img-w .img-ascenseur {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+
+  .glitch-text-w {
+    position: static !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    height: auto !important;
+    inset: auto !important;
   }
 
   .glitch-text-sticky-w {
-    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: auto !important;
     height: auto !important;
-    top: 0 !important;
+    position: static !important;
+    grid-template-columns: 1fr !important;
   }
 
-  .text-block-6 {
-    font-size: 1.15rem !important;
-    letter-spacing: 0.12em !important;
-    line-height: 2 !important;
+  .glitch-text-sticky-w .div-block-5 {
+    display: none !important;
+  }
+
+  .glitch-text-sticky-w .finaltext {
+    position: static !important;
+    transform: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.02em !important;
+    color: #ffffff !important;
     text-align: center !important;
-    word-break: break-word !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 auto !important;
+  }
+
+  .glitch-text-sticky-w .finaltext span {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .img-glitch-w {
+    display: none !important;
   }
 
   /* FAQ Accordions on Mobile */
